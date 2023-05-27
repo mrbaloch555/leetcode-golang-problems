@@ -33,25 +33,24 @@ func isSameTree(p *TreeNode, q *TreeNode) bool {
 		stack_p = stack_p[:len(stack_p)-1]
 		stack_q = stack_q[:len(stack_q)-1]
 
-		if current_p == nil || current_q == nil {
-			return false
-		}
-		if current_p.Val != current_q.Val {
-			return false
-		}
+		if current_p != nil && current_q != nil {
+			if current_p.Val != current_q.Val {
+				return false
+			}
 
-		if current_p.Left != nil && current_q.Left != nil {
-			stack_p = append(stack_p, current_p.Left)
-			stack_q = append(stack_q, current_q.Left)
-		} else if current_p.Left == nil && current_q.Left != nil || current_p.Left != nil && current_q.Left == nil {
-			return false
-		}
+			if current_p.Left != nil && current_q.Left != nil {
+				stack_p = append(stack_p, current_p.Left)
+				stack_q = append(stack_q, current_q.Left)
+			} else if current_p.Left == nil && current_q.Left != nil || current_p.Left != nil && current_q.Left == nil {
+				return false
+			}
 
-		if current_p.Right != nil && current_q.Right != nil {
-			stack_p = append(stack_p, current_p.Right)
-			stack_q = append(stack_q, current_q.Right)
-		} else if current_p.Right == nil && current_q.Right != nil || current_p.Right != nil && current_q.Right == nil {
-			return false
+			if current_p.Right != nil && current_q.Right != nil {
+				stack_p = append(stack_p, current_p.Right)
+				stack_q = append(stack_q, current_q.Right)
+			} else if current_p.Right == nil && current_q.Right != nil || current_p.Right != nil && current_q.Right == nil {
+				return false
+			}
 		}
 	}
 	return true
